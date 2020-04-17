@@ -1,0 +1,15 @@
+{
+    "production": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-covidselfreport-production-171840-authRole",
+            "UnauthRoleArn": "arn:aws:iam::592659851109:role/amplify-covidselfreport-production-171840-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::592659851109:role/amplify-covidselfreport-production-171840-authRole",
+            "Region": "eu-west-1",
+            "DeploymentBucketName": "amplify-covidselfreport-production-171840-deployment",
+            "UnauthRoleName": "amplify-covidselfreport-production-171840-unauthRole",
+            "StackName": "amplify-covidselfreport-production-171840",
+            "StackId": "arn:aws:cloudformation:eu-west-1:592659851109:stack/amplify-covidselfreport-production-171840/967bd7d0-6d19-11ea-b5d7-0234dfcdb558",
+            "AmplifyAppId": "d30p7r5j8elr4l"
+        }
+    }
+}
