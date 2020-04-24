@@ -20,7 +20,7 @@ export default class App extends React.Component {
 
         cough: false,
         gps: { text: "", geo: { latitude: "", longitude: "" } },
-        otherpeople: ["", "", ""]
+        otherpeople: ["", "", ""],
       },
       done: false,
       wait: false,
@@ -50,8 +50,9 @@ export default class App extends React.Component {
           yourlocation: "Your address",
           usegps: "Use phone GPS",
           ormanualgps: "or, manually add address",
-          copytext:"Copy and send text to your friend",
-          invitetext:"Dear friend, please report your covid health status on https://covidselfreport.co.za"
+          copytext: "Copy and send text to your friend",
+          invitetext:
+            "Dear friend, please report your covid health status on https://covidselfreport.co.za",
         },
         isizulu: {
           header: "ZZCovid 19 self reporting",
@@ -76,8 +77,9 @@ export default class App extends React.Component {
           yourlocation: "Your address",
           usegps: "Use phone GPS",
           ormanualgps: "or, manually add address",
-          copytext:"Copy and send text to your friend",
-          invitetext:"Dear friend, please report your covid health status on https://covidselfreport.co.za"
+          copytext: "Copy and send text to your friend",
+          invitetext:
+            "Dear friend, please report your covid health status on https://covidselfreport.co.za",
         },
         venda: {
           header: "VVCovid 19 self reporting",
@@ -102,10 +104,11 @@ export default class App extends React.Component {
           yourlocation: "Your address",
           usegps: "Use phone GPS",
           ormanualgps: "or, manually add address",
-          copytext:"Copy and send text to your friend",
-          invitetext:"Dear friend, please report your covid health status on https://covidselfreport.co.za"
-        }
-      }
+          copytext: "Copy and send text to your friend",
+          invitetext:
+            "Dear friend, please report your covid health status on https://covidselfreport.co.za",
+        },
+      },
     };
   }
   updatePayload(item, input) {
@@ -130,11 +133,11 @@ export default class App extends React.Component {
   }
   getGPS() {
     if ("geolocation" in navigator) {
-      window.navigator.geolocation.getCurrentPosition(success => {
+      window.navigator.geolocation.getCurrentPosition((success) => {
         let payload = this.state.payload;
         payload.gps.geo = {
           latitude: success.coords.latitude,
-          longitude: success.coords.longitude
+          longitude: success.coords.longitude,
         };
         this.setState({ payload });
       });
@@ -148,9 +151,9 @@ export default class App extends React.Component {
         method: "POST",
         headers: {
           Accept: "application/json",
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(this.state.payload)
+        body: JSON.stringify(this.state.payload),
       }
     );
     let r = await s.json();
@@ -173,10 +176,10 @@ export default class App extends React.Component {
         pain: false,
         cough: false,
         gps: { text: "", geo: { latitude: "", longitude: "" } },
-        otherpeople: ["", "", ""]
-      }
+        otherpeople: ["", "", ""],
+      },
     });
-    let nums = this.state.payload.otherpeople.filter(z => z !== "");
+    let nums = this.state.payload.otherpeople.filter((z) => z !== "");
     nums = [...new Set(nums)];
     if (nums.length > 0) {
       // console.log(nums);
@@ -186,9 +189,9 @@ export default class App extends React.Component {
           method: "POST",
           headers: {
             Accept: "application/json",
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
           },
-          body: JSON.stringify(nums)
+          body: JSON.stringify(nums),
         }
       );
       let q = await p.json();
@@ -217,7 +220,7 @@ export default class App extends React.Component {
               borderWidth: 0,
               padding: 10,
               borderRadius: 3,
-              margin: 3
+              margin: 3,
             }}
             onClick={() => {
               let payload = this.state.payload;
@@ -235,7 +238,7 @@ export default class App extends React.Component {
           style={{
             display: "flex",
             flexDirection: "row",
-            alignItems: "center"
+            alignItems: "center",
           }}
         >
           <div style={{ width: 100 }}>
@@ -244,7 +247,7 @@ export default class App extends React.Component {
 
           <input
             value={this.state.payload.id}
-            onChange={change => {
+            onChange={(change) => {
               this.updatePayload("id", change.target.value);
             }}
             type="tel"
@@ -254,7 +257,7 @@ export default class App extends React.Component {
           style={{
             display: "flex",
             flexDirection: "row",
-            alignItems: "center"
+            alignItems: "center",
           }}
         >
           <div style={{ width: 100 }}>
@@ -263,7 +266,7 @@ export default class App extends React.Component {
 
           <input
             value={this.state.payload.phone}
-            onChange={change => {
+            onChange={(change) => {
               this.updatePayload("phone", change.target.value);
             }}
             type="tel"
@@ -275,7 +278,7 @@ export default class App extends React.Component {
             <input
               type="checkbox"
               checked={this.state.payload.fine}
-              onChange={change => {
+              onChange={(change) => {
                 this.updateChecks("fine", change.target.checked);
               }}
             />
@@ -285,7 +288,7 @@ export default class App extends React.Component {
             <input
               type="checkbox"
               checked={this.state.payload.sicksuspect}
-              onChange={change => {
+              onChange={(change) => {
                 this.updateChecks("sicksuspect", change.target.checked);
               }}
             />
@@ -296,7 +299,7 @@ export default class App extends React.Component {
               <input
                 type="checkbox"
                 checked={this.state.payload.fever}
-                onChange={change => {
+                onChange={(change) => {
                   this.updateSymptom("fever", change.target.checked);
                 }}
               />
@@ -306,7 +309,7 @@ export default class App extends React.Component {
               <input
                 type="checkbox"
                 checked={this.state.payload.pain}
-                onChange={change => {
+                onChange={(change) => {
                   this.updateSymptom("pain", change.target.checked);
                 }}
               />
@@ -316,7 +319,7 @@ export default class App extends React.Component {
               <input
                 type="checkbox"
                 checked={this.state.payload.cough}
-                onChange={change => {
+                onChange={(change) => {
                   this.updateSymptom("cough", change.target.checked);
                 }}
               />
@@ -327,7 +330,7 @@ export default class App extends React.Component {
             <input
               type="checkbox"
               checked={this.state.payload.sicknotsuspect}
-              onChange={change => {
+              onChange={(change) => {
                 this.updateChecks("sicknotsuspect", change.target.checked);
               }}
             />
@@ -337,7 +340,7 @@ export default class App extends React.Component {
             <input
               type="checkbox"
               checked={this.state.payload.sickconfirmed}
-              onChange={change => {
+              onChange={(change) => {
                 this.updateChecks("sickconfirmed", change.target.checked);
               }}
             />
@@ -347,7 +350,7 @@ export default class App extends React.Component {
             <input
               type="checkbox"
               checked={this.state.payload.recovered}
-              onChange={change => {
+              onChange={(change) => {
                 this.updateChecks("recovered", change.target.checked);
               }}
             />
@@ -363,7 +366,7 @@ export default class App extends React.Component {
                 borderWidth: 0,
                 padding: 10,
                 borderRadius: 3,
-                margin: 3
+                margin: 3,
               }}
               onClick={() => {
                 this.getGPS();
@@ -381,7 +384,7 @@ export default class App extends React.Component {
             {this.state.text[this.state.payload.language].ormanualgps}
             <input
               value={this.state.payload.gps.text}
-              onChange={change => {
+              onChange={(change) => {
                 let payload = this.state.payload;
                 payload.gps.text = change.target.value;
                 this.setState({ payload });
@@ -394,7 +397,7 @@ export default class App extends React.Component {
             <p key={ind}>
               <input
                 value={this.state.payload.otherpeople[ind]}
-                onChange={change => {
+                onChange={(change) => {
                   let payload = this.state.payload;
                   payload.otherpeople[ind] = change.target.value;
                   this.setState({ payload });
@@ -412,7 +415,7 @@ export default class App extends React.Component {
                 borderWidth: 0,
                 padding: 10,
                 borderRadius: 3,
-                margin: 3
+                margin: 3,
               }}
               onClick={() => {
                 let otherNumberCount = this.state.otherNumberCount;
@@ -445,7 +448,7 @@ export default class App extends React.Component {
                 borderWidth: 0,
                 padding: 10,
                 borderRadius: 3,
-                margin: 3
+                margin: 3,
               }}
               onClick={() => {
                 if (
@@ -455,7 +458,6 @@ export default class App extends React.Component {
                   this.setState({ error: true });
                 } else {
                   this.sendInfo();
-
                 }
               }}
             >
@@ -464,9 +466,7 @@ export default class App extends React.Component {
           </p>
         </div>
         <h4>{this.state.text[this.state.payload.language].copytext}</h4>
-        <p>
-        {this.state.text[this.state.payload.language].invitetext}
-        </p>
+        <p>{this.state.text[this.state.payload.language].invitetext}</p>
       </div>
     );
   }
